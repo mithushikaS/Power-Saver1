@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1030893165125",
+    "project_id": "powersaver-95fc1",
+    "storage_bucket": "powersaver-95fc1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030893165125:android:121dc99af0070c82e2e12c",
+        "android_client_info": {
+          "package_name": "com.mithushika_s.PowerSaver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030893165125-52j78me4j0u5pbc9m04465rj1loafnlt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mithushika_s.PowerSaver",
+            "certificate_hash": "dd7186be75fe4f02ace204f2063806d4d40ad1b1"
+          }
+        },
+        {
+          "client_id": "1030893165125-cr0nf8pf2v8p2nj31744jro296jjg28a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mithushika_s.PowerSaver",
+            "certificate_hash": "fb957635bdbf9f6817c8b052e653fb3f107d2663"
+          }
+        },
+        {
+          "client_id": "1030893165125-sq0lu18jco9nric8qdrul4k3cg1pj714.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDVInCPeeLCSELg8x1nMItk52kgV4_L1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1030893165125-sq0lu18jco9nric8qdrul4k3cg1pj714.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
