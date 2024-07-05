@@ -18,7 +18,6 @@ import AlertsScreen from './screens/AlertsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
 import {Ionicons} from '@expo/vector-icons';
-
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -46,6 +45,6 @@ const App = () => (
       <Stack.Screen name="Feedback" component={FeedbackScreen} />
     </Stack.Navigator>
   </NavigationContainer>
-);
+  );
 
-export default App;
+  export default App;
