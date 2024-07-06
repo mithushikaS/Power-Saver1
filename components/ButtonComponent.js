@@ -12,9 +12,12 @@ const ButtonComponent = ({ title, onPress, color = '#4CAF50' }) => {
   const styles = StyleSheet.create({
     button: {
       padding: 15,
-      borderRadius: 5,
+      borderRadius: 45,
       alignItems: 'center',
-      marginVertical: 10,
+      marginVertical: 30,
+      paddingLeft:130,
+      paddingRight:130,
+      width: '100%',
     },
     text: {
       color: '#fff',

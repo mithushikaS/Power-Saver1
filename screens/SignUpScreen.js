@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet,Text, TextInput, Button,Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import InputComponent from "../components/InputComponent";
 import ButtonComponent from "../components/ButtonComponent";
@@ -16,6 +16,8 @@ const SignUpScreen = () => {
   
     return (
       <View style={styles.container}>
+      <Image source={require('../assets/images/Login-amico (1).png')} style={styles.image} />
+      <Text style={styles.title}>Register</Text>
         <InputComponent
           placeholder="Email"
           value={email}
@@ -34,6 +36,9 @@ const SignUpScreen = () => {
           onChangeText={setConfirmPassword}
         />
         <ButtonComponent title="Sign Up" onPress={handleSignUp} />
+        <Text style={styles.link} onPress={() => navigation.navigate('Login')}>
+        Already have an account? Sign In
+      </Text>
       </View>
     );
   };
@@ -46,6 +51,20 @@ const SignUpScreen = () => {
       justifyContent: 'center',
       paddingHorizontal: 20,
     },
+    image: {
+    width: 300,
+    height: 300,
+    alignSelf: 'center',
+  },
+  title: {
+    fontSize: 24,
+    color:'green',
+  },
+  link: {
+    color: 'green',
+    marginTop: 20,
+    textAlign: 'center',
+  },
   });
   
   export default SignUpScreen;
