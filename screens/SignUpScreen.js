@@ -16,7 +16,7 @@ const SignUpScreen = () => {
   
     return (
       <View style={styles.container}>
-      <Image source={require('../assets/images/Login-amico (1).png')} style={styles.image} />
+      <Image source={require('../assets/images/new.png')} style={styles.image} />
       <Text style={styles.title}>Register</Text>
         <InputComponent
           placeholder="Email"
@@ -53,12 +53,13 @@ const SignUpScreen = () => {
     },
     image: {
     width: 300,
-    height: 300,
+    height: 250,
     alignSelf: 'center',
   },
   title: {
     fontSize: 24,
     color:'green',
+    marginTop:20,
   },
   link: {
     color: 'green',

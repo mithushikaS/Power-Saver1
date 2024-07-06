@@ -28,11 +28,13 @@ const LoginScreen = () => {
           value={password}
           onChangeText={setPassword}
         />
+        <Text style={styles.link1} onPress={() => navigation.navigate('ForgotPassword')}>
+        Forgot Password?
+      </Text>
         <ButtonComponent title="Login" onPress={handleLogin} />
         <Text style={styles.link} onPress={() => navigation.navigate('SignUp')}>
         Don't have an account? Sign Up
       </Text>
-
       </View>
     );
   };
@@ -63,7 +65,11 @@ const LoginScreen = () => {
     marginTop: 30,
     textAlign: 'center',
   },
-
+  link1: {
+    color: 'gray',
+    marginTop: 10,
+    textAlign: 'center',
+  },
   });
   
   export default LoginScreen;
