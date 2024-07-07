@@ -19,7 +19,7 @@ const InputComponent = ({ placeholder, value, onChangeText, secureTextEntry = fa
       padding: 15,
       marginVertical: 10,
       backgroundColor: '#fff',
-      borderRadius: 5,
+      borderRadius: 40,
       borderWidth: 1,
       borderColor: '#ddd',
     },
