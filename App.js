@@ -16,6 +16,8 @@ import EnergyTrackingScreen from './screens/EnergyTrackingScreen';
 import DailyTipsScreen from './screens/DailyTipsScreen';
 import AlertsScreen from './screens/AlertsScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
+import NewPasswordScreen from './screens/NewPasswordScreen';
 
 import {Ionicons} from '@expo/vector-icons';
 const Stack = createStackNavigator();
@@ -38,6 +40,8 @@ const App = () => (
       <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
       <Stack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} options={{ headerShown: false }}/>
+      <Stack.Screen name="NewPassword" component={NewPasswordScreen} options={{ headerShown: false }}/>
       <Stack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }} />
       <Stack.Screen name="Renewable Energy Info" component={RenewableEnergyInfoScreen} />
       <Stack.Screen name="Community" component={CommunityScreen} />

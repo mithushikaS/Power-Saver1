@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 
 // Import local images
-import tipImage1 from '../assets/images/tip1.jpg'; // Adjust the path and filename as per your actual image file
-import tipImage2 from '../assets/images/tip2.jpg';
-import tipImage3 from '../assets/images/tip3.jpg';
-import tipImage4 from '../assets/images/tip4.jpg';
+import tipImage1 from '../assets/images/tip1.png'; // Adjust the path and filename as per your actual image file
+import tipImage2 from '../assets/images/tip2.png';
+import tipImage3 from '../assets/images/tip3.png';
+import tipImage4 from '../assets/images/tip4.png';
 
 // Mock data for daily tips
 const mockTips = [

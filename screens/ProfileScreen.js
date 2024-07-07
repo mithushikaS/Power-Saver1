@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity, Alert, ScrollView } from "react-native";
 import HeaderComponent from "../components/HeaderComponent";
-import InputComponent from "../components/InputComponent";
 import ButtonComponent from "../components/ButtonComponent";
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   const [profilePicture, setProfilePicture] = useState(null);
   const [energySavingGoals, setEnergySavingGoals] = useState('Reduce energy consumption by 20% in 6 months');
   const [achievementProgress, setAchievementProgress] = useState(40); // Example: 40% progress
@@ -28,6 +27,7 @@ const ProfileScreen = () => {
   const handleLogout = () => {
     Alert.alert("Logged Out", "You have been logged out.");
     // Implement actual logout logic
+    navigation.navigate('Login'); // Navigate to the Login screen
   };
 
   return (
@@ -60,7 +60,7 @@ const ProfileScreen = () => {
         </View>
 
         <ButtonComponent title="Save Changes" onPress={handleSaveChanges} />
-        <ButtonComponent title="Log Out" onPress={handleLogout} color="#FF0000" />
+        <ButtonComponent title="Log Out" onPress={handleLogout} color="#A020F0" />
       </ScrollView>
     </View>
   );

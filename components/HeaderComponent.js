@@ -13,7 +13,7 @@ const HeaderComponent = ({ title }) => {
     header: {
       width: '100%',
       padding: 15,
-      backgroundColor: '#4CAF50',
+      backgroundColor: '#000000',
       alignItems: 'center',
       justifyContent: 'center',
     },

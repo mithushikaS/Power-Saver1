@@ -1,26 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
-// Mock data for energy usage
 const mockData = [
     { date: '2024-07-01', usage: '5 kWh', peakUsage: '2 PM', cost: '$1.50' },
     { date: '2024-07-02', usage: '4.5 kWh', peakUsage: '3 PM', cost: '$1.35' },
     { date: '2024-07-03', usage: '5.2 kWh', peakUsage: '1 PM', cost: '$1.56' },
     { date: '2024-07-04', usage: '5.8 kWh', peakUsage: '12 PM', cost: '$1.74' },
-    // Add more mock data entries here
 ];
 
-const EnergyTrackingScreen = () => {
+const EnergyTrackingScreen = ({ navigation }) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.header}>Energy Usage Tracking</Text>
             
-            {/* Placeholder for Interactive Chart */}
             <View style={styles.chartContainer}>
                 <Text style={styles.chartText}>Interactive Chart Placeholder</Text>
             </View>
 
-            {/* Daily Usage Details */}
             <Text style={styles.subheader}>Daily Usage Details</Text>
             {mockData.map((entry, index) => (
                 <View key={index} style={styles.entry}>
@@ -35,23 +31,27 @@ const EnergyTrackingScreen = () => {
                 </View>
             ))}
 
-            {/* Usage Trends */}
             <Text style={styles.subheader}>Usage Trends</Text>
             <View style={styles.trendsContainer}>
                 <Text style={styles.trendsText}>Trends Graph Placeholder</Text>
             </View>
 
-            {/* Comparison with Past Data */}
             <Text style={styles.subheader}>Comparison with Past Data</Text>
             <View style={styles.comparisonContainer}>
                 <Text style={styles.comparisonText}>Comparison Graph Placeholder</Text>
             </View>
 
-            {/* IoT Integration Placeholder */}
             <Text style={styles.subheader}>IoT Integration</Text>
             <View style={styles.iotContainer}>
                 <Text style={styles.iotText}>Real-Time Data Placeholder</Text>
             </View>
+
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigation.navigate('Renewable Energy Info')}
+            >
+                <Text style={styles.buttonText}>Go to Renewable Energy Info</Text>
+            </TouchableOpacity>
         </ScrollView>
     );
 };
@@ -176,6 +176,23 @@ const styles = StyleSheet.create({
     iotText: {
         fontSize: 18,
         color: '#6c757d',
+    },
+    button: {
+        backgroundColor: '#A020F0',
+        padding: 15,
+        borderRadius: 10,
+        alignItems: 'center',
+        marginTop: 20,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
+    },
+    buttonText: {
+        fontSize: 18,
+        color: '#ffffff',
+        fontWeight: 'bold',
     },
 });
 
