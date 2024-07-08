@@ -1,199 +1,166 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { Button } from 'react-native-paper';
 
-const mockData = [
-    { date: '2024-07-01', usage: '5 kWh', peakUsage: '2 PM', cost: '$1.50' },
-    { date: '2024-07-02', usage: '4.5 kWh', peakUsage: '3 PM', cost: '$1.35' },
-    { date: '2024-07-03', usage: '5.2 kWh', peakUsage: '1 PM', cost: '$1.56' },
-    { date: '2024-07-04', usage: '5.8 kWh', peakUsage: '12 PM', cost: '$1.74' },
-];
+const EnergyTrackingScreen = () => {
+  const [timeFrame, setTimeFrame] = useState('Monthly');
 
-const EnergyTrackingScreen = ({ navigation }) => {
-    return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.header}>Energy Usage Tracking</Text>
-            
-            <View style={styles.chartContainer}>
-                <Text style={styles.chartText}>Interactive Chart Placeholder</Text>
-            </View>
+  const getUnitsAndProgress = (frame) => {
+    switch (frame) {
+      case 'Daily':
+        return { units: 30, progress: 30 / 100, color: 'red' };
+      case 'Monthly':
+        return { units: 250, progress: 250 / 1000, color: 'gold' };
+      case 'Yearly':
+        return { units: 3000, progress: 3000 / 12000, color: 'green' };
+      default:
+        return { units: 0, progress: 0, color: 'gray' };
+    }
+  };
 
-            <Text style={styles.subheader}>Daily Usage Details</Text>
-            {mockData.map((entry, index) => (
-                <View key={index} style={styles.entry}>
-                    <View style={styles.entryRow}>
-                        <Text style={styles.date}>{entry.date}</Text>
-                        <Text style={styles.usage}>{entry.usage}</Text>
-                    </View>
-                    <View style={styles.entryRow}>
-                        <Text style={styles.peakUsage}>Peak Usage: {entry.peakUsage}</Text>
-                        <Text style={styles.cost}>Cost: {entry.cost}</Text>
-                    </View>
-                </View>
-            ))}
+  const { units, progress, color } = getUnitsAndProgress(timeFrame);
+  const rotation = progress * 360;
 
-            <Text style={styles.subheader}>Usage Trends</Text>
-            <View style={styles.trendsContainer}>
-                <Text style={styles.trendsText}>Trends Graph Placeholder</Text>
-            </View>
-
-            <Text style={styles.subheader}>Comparison with Past Data</Text>
-            <View style={styles.comparisonContainer}>
-                <Text style={styles.comparisonText}>Comparison Graph Placeholder</Text>
-            </View>
-
-            <Text style={styles.subheader}>IoT Integration</Text>
-            <View style={styles.iotContainer}>
-                <Text style={styles.iotText}>Real-Time Data Placeholder</Text>
-            </View>
-
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('Renewable Energy Info')}
-            >
-                <Text style={styles.buttonText}>Go to Renewable Energy Info</Text>
-            </TouchableOpacity>
-        </ScrollView>
-    );
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.tabContainer}>
+        <Button
+          mode="contained"
+          style={timeFrame === 'Daily' ? styles.tabButtonSelected : styles.tabButton}
+          onPress={() => setTimeFrame('Daily')}
+        >
+          Daily
+        </Button>
+        <Button
+          mode="contained"
+          style={timeFrame === 'Monthly' ? styles.tabButtonSelected : styles.tabButton}
+          onPress={() => setTimeFrame('Monthly')}
+        >
+          Monthly
+        </Button>
+        <Button
+          mode="contained"
+          style={timeFrame === 'Yearly' ? styles.tabButtonSelected : styles.tabButton}
+          onPress={() => setTimeFrame('Yearly')}
+        >
+          Yearly
+        </Button>
+      </View>
+      <View style={styles.circleContainer}>
+        <View style={styles.circle}>
+          <View style={styles.baseCircle} />
+          <View style={[styles.progressCircle, {
+            transform: [{ rotate: `${rotation}deg` }],
+            borderColor: color,
+          }]} />
+          {progress > 0.5 && (
+            <View style={[styles.progressCircleOverflow, {
+              borderColor: color,
+            }]} />
+          )}
+          <Text style={styles.circleText}>{units}</Text>
+          <Text style={styles.circleSubText}>Average Units</Text>
+        </View>
+      </View>
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexGrow: 1,
-        padding: 20,
-        backgroundColor: '#f8f9fa',
-    },
-    header: {
-        fontSize: 26,
-        marginBottom: 20,
-        textAlign: 'center',
-        color: '#343a40',
-        fontWeight: 'bold',
-    },
-    chartContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ffffff',
-        padding: 20,
-        marginBottom: 20,
-        borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-    },
-    chartText: {
-        fontSize: 18,
-        color: '#6c757d',
-    },
-    subheader: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        marginBottom: 10,
-        color: '#495057',
-    },
-    entry: {
-        backgroundColor: '#ffffff',
-        borderRadius: 8,
-        marginBottom: 10,
-        borderWidth: 1,
-        borderColor: '#dee2e6',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.1,
-        shadowRadius: 2,
-        elevation: 1,
-        padding: 15,
-    },
-    entryRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 5,
-    },
-    date: {
-        fontSize: 16,
-        color: '#212529',
-    },
-    usage: {
-        fontSize: 16,
-        color: '#212529',
-    },
-    peakUsage: {
-        fontSize: 14,
-        color: '#6c757d',
-    },
-    cost: {
-        fontSize: 14,
-        color: '#6c757d',
-    },
-    trendsContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ffffff',
-        padding: 20,
-        marginBottom: 20,
-        borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-    },
-    trendsText: {
-        fontSize: 18,
-        color: '#6c757d',
-    },
-    comparisonContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ffffff',
-        padding: 20,
-        marginBottom: 20,
-        borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-    },
-    comparisonText: {
-        fontSize: 18,
-        color: '#6c757d',
-    },
-    iotContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ffffff',
-        padding: 20,
-        marginBottom: 20,
-        borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-    },
-    iotText: {
-        fontSize: 18,
-        color: '#6c757d',
-    },
-    button: {
-        backgroundColor: '#A020F0',
-        padding: 15,
-        borderRadius: 10,
-        alignItems: 'center',
-        marginTop: 20,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 2,
-    },
-    buttonText: {
-        fontSize: 18,
-        color: '#ffffff',
-        fontWeight: 'bold',
-    },
+  container: {
+    flex: 1,
+    paddingTop: 40,
+    backgroundColor: 'white',
+    paddingHorizontal: 20,
+  },
+  tabContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  tabButton: {
+    flex: 1,
+    margin: 5,
+    borderRadius: 20,
+    backgroundColor: '#f0f0f0',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+  },
+  tabButtonSelected: {
+    flex: 1,
+    margin: 5,
+    borderRadius: 20,
+    backgroundColor: '#ffd700',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+  },
+  circleContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 50,
+  },
+  circle: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  baseCircle: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    borderWidth: 20,
+    borderColor: '#e6e6e6',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  },
+  progressCircle: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    borderWidth: 20,
+    borderLeftColor: 'transparent',
+    borderBottomColor: 'transparent',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  },
+  progressCircleOverflow: {
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    borderWidth: 20,
+    borderRightColor: '#000000',
+    borderTopColor: 'transparent',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+  },
+  circleText: {
+    fontSize: 48,
+    color: 'gold',
+    fontWeight: 'bold',
+    position: 'absolute',
+    top: '25%',
+    textAlign: 'center',
+    width: '100%',
+  },
+  circleSubText: {
+    fontSize: 18,
+    color: 'gray',
+    position: 'absolute',
+    top: '60%',
+    textAlign: 'center',
+    width: '100%',
+  },
 });
 
 export default EnergyTrackingScreen;

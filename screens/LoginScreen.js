@@ -32,12 +32,7 @@ const LoginScreen = () => {
         Forgot Password?
       </Text>
         <ButtonComponent title="Login" onPress={handleLogin} />
-<<<<<<< HEAD
-        <Text style={styles.link1} onPress={() => navigation.navigate('ForgotPassword')}>
-        Forgot Password?
-      </Text>
-=======
->>>>>>> ffe989d2a68742f8d83e6e115a621543e6fb755c
+      
         <Text style={styles.link} onPress={() => navigation.navigate('SignUp')}>
         Don't have an account? Sign Up
       </Text>
