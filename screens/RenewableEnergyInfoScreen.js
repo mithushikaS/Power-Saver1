@@ -1,14 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
 import HeaderComponent from "../components/HeaderComponent";
 
-// Assuming your images are imported as follows:
-const solarPanelImage = require('../assets/images/solar-panel.png');
-const benefitsImage = require('../assets/images/benefits.jpg');
-const windTurbineImage = require('../assets/images/wind-turbine.png');
-const hydropowerImage = require('../assets/images/hydropower.png');
-const geothermalImage = require('../assets/images/geothermal.png');
-const biomassImage = require('../assets/images/biomass.png');
+// Sample icons from Icons8 (for demonstration)
+const icons = {
+  solar: { uri: 'https://img.icons8.com/ios-filled/50/000000/solar-panel.png' },
+  wind: { uri: 'https://img.icons8.com/ios-filled/50/000000/wind-turbine.png' },
+  hydro: { uri: 'https://img.icons8.com/ios-filled/50/000000/dam.png' }, // Changed icon for hydropower
+  geothermal: { uri: 'https://img.icons8.com/ios-filled/50/000000/geothermal.png' },
+  biomass: { uri: 'https://img.icons8.com/ios-filled/50/000000/biomass.png' },
+  benefits: { uri: 'https://img.icons8.com/ios-filled/50/000000/eco.png' },
+};
 
 const RenewableEnergyInfoScreen = () => {
   return (
@@ -16,45 +18,44 @@ const RenewableEnergyInfoScreen = () => {
       <HeaderComponent title="Renewable Energy Info" />
 
       <View style={styles.section}>
-        <Text style={styles.title}>Introduction to Renewable Energy</Text>
-        <Image source={solarPanelImage} style={styles.image} />
+        <Text style={styles.title}>1. Introduction to Renewable Energy</Text>
         <Text style={styles.content}>
-          Renewable energy comes from sources that are naturally replenishing such as solar, wind, hydro, geothermal, and biomass. 
-          {"\n\n"}Solar energy harnesses sunlight using photovoltaic cells. 
-          {"\n\n"}Wind energy captures wind power with turbines. 
-          {"\n\n"}Hydropower generates electricity from flowing water. 
-          {"\n\n"}Geothermal energy utilizes heat from the earth. 
-          {"\n\n"}Biomass energy comes from organic materials.
+          Renewable energy comes from sources that are naturally replenished on a human timescale, such as sunlight, wind, rain, tides, waves, and geothermal heat.
         </Text>
+
+        <Text style={styles.subtitle}>Importance and Benefits:</Text>
+        <Text style={styles.content}>
+          • Environmental: Reduces greenhouse gas emissions and air pollution.{"\n"}
+          • Economic: Lowers energy costs over time and creates jobs in renewable energy sectors.{"\n"}
+          • Social: Improves public health by reducing pollution-related illnesses and contributes to energy security.
+        </Text>
+
+        <Text style={styles.subtitle}>Common Types of Renewable Energy Sources:</Text>
+        <View style={styles.iconTextContainer}>
+          <Image source={icons.solar} style={styles.icon} />
+          <Text style={styles.content}>Solar Energy: Captures sunlight and converts it into electricity using photovoltaic cells.</Text>
+        </View>
+        <View style={styles.iconTextContainer}>
+          <Image source={icons.wind} style={styles.icon} />
+          <Text style={styles.content}>Wind Energy: Uses wind turbines to convert wind power into electricity.</Text>
+        </View>
+        <View style={styles.iconTextContainer}>
+          <Image source={icons.hydro} style={styles.icon} />
+          <Text style={styles.content}>Hydropower: Generates electricity by using the flow of water through turbines.</Text>
+        </View>
+        <View style={styles.iconTextContainer}>
+          <Image source={icons.geothermal} style={styles.icon} />
+          <Text style={styles.content}>Geothermal Energy: Harnesses heat from within the Earth to generate electricity.</Text>
+        </View>
+        <View style={styles.iconTextContainer}>
+          <Image source={icons.biomass} style={styles.icon} />
+          <Text style={styles.content}>Biomass Energy: Uses organic materials (such as wood, agricultural residues) to produce energy.</Text>
+        </View>
       </View>
 
-      <View style={styles.section}>
-        <Text style={styles.title}>Benefits of Renewable Energy</Text>
-        <Image source={benefitsImage} style={styles.image} />
-        <Text style={styles.content}>
-          Renewable energy reduces carbon footprint, promotes sustainability, and can lead to significant cost savings over time.
-        </Text>
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.title}>Types of Renewable Energy</Text>
-        <Image source={windTurbineImage} style={styles.image} />
-        <Text style={styles.content}>
-          Wind energy captures wind power with turbines.
-        </Text>
-        <Image source={hydropowerImage} style={styles.image} />
-        <Text style={styles.content}>
-          Hydropower generates electricity from flowing water.
-        </Text>
-        <Image source={geothermalImage} style={styles.image} />
-        <Text style={styles.content}>
-          Geothermal energy utilizes heat from the earth.
-        </Text>
-        <Image source={biomassImage} style={styles.image} />
-        <Text style={styles.content}>
-          Biomass energy comes from organic materials.
-        </Text>
-      </View>
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>Learn More</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -62,16 +63,16 @@ const RenewableEnergyInfoScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#e6f7ff',
   },
   section: {
     margin: 20,
-    backgroundColor: '#fff',
-    padding: 15,
+    backgroundColor: '#ffffff',
+    padding: 20,
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.2,
     shadowRadius: 5,
   },
   title: {
@@ -79,16 +80,37 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  image: {
-    width: '100%',
-    height: 200,
-    marginBottom: 10,
-    borderRadius: 10,
+  subtitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 10,
+  },
+  iconTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  icon: {
+    width: 50,
+    height: 50,
+    marginRight: 10,
   },
   content: {
-    fontSize: 18,
+    fontSize: 16,
     color: '#333',
-    marginBottom: 10,
+    flex: 1,
+  },
+  button: {
+    backgroundColor: '#007bff',
+    padding: 15,
+    margin: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 

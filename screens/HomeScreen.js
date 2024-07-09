@@ -55,7 +55,7 @@ const HomeScreen = () => {
           <ButtonComponent
             title="Community"
             onPress={() => navigation.navigate('Community')}
-            color="#A020F0"
+            color="#000000"
           />
         </View>
       </ScrollView>

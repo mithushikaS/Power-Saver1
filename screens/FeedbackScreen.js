@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Image } from "react-native";
 import HeaderComponent from "../components/HeaderComponent";
-import ButtonComponent from "../components/ButtonComponent";
+
+// Import your image file
+import feedbackImage from "../assets/images/feedback.png";
 
 const FeedbackScreen = () => {
   const [feedback, setFeedback] = useState('');
@@ -34,6 +36,11 @@ const FeedbackScreen = () => {
       <Text style={styles.instructions}>
         We value your feedback! Please let us know what you think about our app.
       </Text>
+
+      {/* Image Section */}
+      <View style={styles.imageContainer}>
+        <Image source={feedbackImage} style={styles.image} />
+      </View>
       
       <View style={styles.ratingContainer}>
         <Text style={styles.label}>Rate our app:</Text>
@@ -77,7 +84,10 @@ const FeedbackScreen = () => {
         multiline
       />
       
-      <ButtonComponent title="Submit" onPress={handleSubmit} />
+      {/* Submit Button */}
+      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+        <Text style={styles.submitButtonText}>Submit</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -111,12 +121,12 @@ const styles = StyleSheet.create({
   ratingButton: {
     backgroundColor: '#ddd',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 50,
     width: 40,
     alignItems: 'center',
   },
   selectedRatingButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#ffd700',
   },
   ratingText: {
     fontSize: 16,
@@ -133,6 +143,26 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
     fontSize: 16,
     color: '#333',
+  },
+  imageContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  image: {
+    width: '100%', // Adjust width as needed
+    height: 200, // Adjust height as needed
+    resizeMode: 'contain', // Adjust the image's fitting style
+  },
+  submitButton: {
+    backgroundColor: '#000', // Black background color
+    padding: 15,
+    borderRadius: 50,
+    alignItems: 'center',
+  },
+  submitButtonText: {
+    fontSize: 18,
+    color: '#fff', // White text color
+    fontWeight: 'bold',
   },
 });
 

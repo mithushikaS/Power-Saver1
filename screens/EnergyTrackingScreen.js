@@ -1,165 +1,114 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
-import { Button } from 'react-native-paper';
+import { View, Text, StyleSheet, SafeAreaView, Button, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import ProgressCircle from '../components/ProgressCircle'; // Adjust this path as needed
 
 const EnergyTrackingScreen = () => {
   const [timeFrame, setTimeFrame] = useState('Monthly');
+  const navigation = useNavigation();
 
   const getUnitsAndProgress = (frame) => {
     switch (frame) {
       case 'Daily':
-        return { units: 30, progress: 30 / 100, color: 'red' };
+        return { units: 30, progress: 30 / 100 };
       case 'Monthly':
-        return { units: 250, progress: 250 / 1000, color: 'gold' };
+        return { units: 250, progress: 250 / 1000 };
       case 'Yearly':
-        return { units: 3000, progress: 3000 / 12000, color: 'green' };
+        return { units: 3000, progress: 3000 / 12000 };
       default:
-        return { units: 0, progress: 0, color: 'gray' };
+        return { units: 0, progress: 0 };
     }
   };
 
-  const { units, progress, color } = getUnitsAndProgress(timeFrame);
-  const rotation = progress * 360;
+  const { units, progress } = getUnitsAndProgress(timeFrame);
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.tabContainer}>
-        <Button
-          mode="contained"
-          style={timeFrame === 'Daily' ? styles.tabButtonSelected : styles.tabButton}
-          onPress={() => setTimeFrame('Daily')}
-        >
-          Daily
-        </Button>
-        <Button
-          mode="contained"
-          style={timeFrame === 'Monthly' ? styles.tabButtonSelected : styles.tabButton}
-          onPress={() => setTimeFrame('Monthly')}
-        >
-          Monthly
-        </Button>
-        <Button
-          mode="contained"
-          style={timeFrame === 'Yearly' ? styles.tabButtonSelected : styles.tabButton}
-          onPress={() => setTimeFrame('Yearly')}
-        >
-          Yearly
-        </Button>
-      </View>
-      <View style={styles.circleContainer}>
-        <View style={styles.circle}>
-          <View style={styles.baseCircle} />
-          <View style={[styles.progressCircle, {
-            transform: [{ rotate: `${rotation}deg` }],
-            borderColor: color,
-          }]} />
-          {progress > 0.5 && (
-            <View style={[styles.progressCircleOverflow, {
-              borderColor: color,
-            }]} />
-          )}
-          <Text style={styles.circleText}>{units}</Text>
-          <Text style={styles.circleSubText}>Average Units</Text>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <View style={styles.tabContainer}>
+          <Button
+            title="Daily"
+            onPress={() => setTimeFrame('Daily')}
+            color={timeFrame === 'Daily' ? '#ffd700' : '#f0f0f0'}
+          />
+          <Button
+            title="Monthly"
+            onPress={() => setTimeFrame('Monthly')}
+            color={timeFrame === 'Monthly' ? '#ffd700' : '#f0f0f0'}
+          />
+          <Button
+            title="Yearly"
+            onPress={() => setTimeFrame('Yearly')}
+            color={timeFrame === 'Yearly' ? '#ffd700' : '#f0f0f0'}
+          />
         </View>
-      </View>
+        <ProgressCircle units={units} progress={progress} />
+        <Image
+          source={require('../assets/images/energy.png')} // Adjust this path as needed
+          style={styles.headerImage}
+          resizeMode="contain"
+        />
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.descriptionText}>
+            The progress circle shows the average energy units consumed for the selected time frame. Adjust the time frame to see how your energy consumption changes daily, monthly, or yearly.
+          </Text>
+        </View>
+        <TouchableOpacity
+          style={styles.navigateButton}
+          onPress={() => navigation.navigate('Renewable Energy Info')}
+        >
+          <Text style={styles.navigateButtonText}>Go to Renewable Energy Info</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 40,
+    flex: 2,
     backgroundColor: 'white',
     paddingHorizontal: 20,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
+    paddingTop: 10, // Adjust the top padding as needed
+  },
+  headerImage: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'contain',
+    marginBottom: 0,
+    marginTop: 0,
   },
   tabContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 20,
   },
-  tabButton: {
-    flex: 1,
-    margin: 5,
-    borderRadius: 20,
-    backgroundColor: '#f0f0f0',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
+  descriptionContainer: {
+    marginTop: 20,
+    paddingHorizontal: 10,
+    paddingBottom: 20,
   },
-  tabButtonSelected: {
-    flex: 1,
-    margin: 5,
-    borderRadius: 20,
-    backgroundColor: '#ffd700',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 4,
-  },
-  circleContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 50,
-  },
-  circle: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    overflow: 'hidden',
-  },
-  baseCircle: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    borderWidth: 20,
-    borderColor: '#e6e6e6',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-  },
-  progressCircle: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    borderWidth: 20,
-    borderLeftColor: 'transparent',
-    borderBottomColor: 'transparent',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-  },
-  progressCircleOverflow: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    borderWidth: 20,
-    borderRightColor: '#000000',
-    borderTopColor: 'transparent',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-  },
-  circleText: {
-    fontSize: 48,
-    color: 'gold',
-    fontWeight: 'bold',
-    position: 'absolute',
-    top: '25%',
-    textAlign: 'center',
-    width: '100%',
-  },
-  circleSubText: {
-    fontSize: 18,
+  descriptionText: {
+    fontSize: 16,
     color: 'gray',
-    position: 'absolute',
-    top: '60%',
     textAlign: 'center',
-    width: '100%',
+  },
+  navigateButton: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#ffd700',
+    borderRadius: 50,
+    alignItems: 'center',
+    marginbottom: 20,
+  },
+  navigateButtonText: {
+    fontSize: 16,
+    color: 'white',
+    
+    
   },
 });
 

@@ -15,8 +15,8 @@ const ButtonComponent = ({ title, onPress, color = '#4CAF50' }) => {
       borderRadius: 45,
       alignItems: 'center',
       marginVertical: 30,
-      paddingLeft:120,
-      paddingRight:120,
+      paddingLeft:100,
+      paddingRight:100,
       width: '100%',
     },
     text: {
