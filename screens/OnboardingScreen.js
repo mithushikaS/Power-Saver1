@@ -52,7 +52,6 @@ const OnboardingScreen = () => {
   };
 
   return (
-    <ImageBackground source={require('../assets/images/background.png')} style={styles.background}>
       <View style={styles.container}>
         <View style={styles.slide}>
           <Image source={slides[currentIndex].image} style={styles.image} />
@@ -66,7 +65,6 @@ const OnboardingScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </ImageBackground>
   );
 };
 

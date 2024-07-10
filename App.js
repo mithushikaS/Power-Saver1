@@ -10,7 +10,6 @@ import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import RenewableEnergyInfoScreen from './screens/RenewableEnergyInfoScreen';
 import CommunityScreen from './screens/CommunityScreen';
-import SettingsScreen from './screens/SettingsScreen';
 import FeedbackScreen from './screens/FeedbackScreen';
 import HomeScreen from './screens/HomeScreen';
 import EnergyTrackingScreen from './screens/EnergyTrackingScreen';
@@ -46,7 +45,6 @@ const App = () => (
       <Stack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }} />
       <Stack.Screen name="Renewable Energy Info" component={RenewableEnergyInfoScreen} />
       <Stack.Screen name="Community" component={CommunityScreen} />
-      <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name="Feedback" component={FeedbackScreen} />
     </Stack.Navigator>
   </NavigationContainer>

@@ -16,7 +16,7 @@ const SplashScreen = () => {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="dark-content" backgroundColor="#f0f0f0" />
-        <Image source={require('../assets/images/logo.png')} style={styles.logo} />
+        <Image source={require('../assets/images/Saver logo.png')} style={styles.logo} />
       <Text style={styles.tagline}>Track, Save, and Share Energy Solutions</Text>
     </View>
   );
